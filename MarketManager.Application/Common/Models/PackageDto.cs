@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.DTOs.ExpiredProductDtos
+namespace MarketManager.Application.Common.Models
 {
-    public class ExpiredProductGetDto
+    internal class PackageDto
     {
     }
 }
