@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarketManager.Application.UseCases.Users.Commands.LoginUser;
+﻿namespace MarketManager.Application.UseCases.Users.Commands.LoginUser;
 public class LoginUserCommand
 {
+    public string Username { get; set; } 
+    public string Password { get; set; }
 }
+
