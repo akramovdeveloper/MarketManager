@@ -1,6 +1,6 @@
 ﻿namespace MarketManager.Domain.Entities
 {
-    public class Card : BaseAuditableEntity
+    public class Cart : BaseAuditableEntity
     {
         public Guid PackageId { get; set; }
         public Guid SoldId { get; set; }
