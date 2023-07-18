@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MarketManager.Application.Common.Models;
 
@@ -7,16 +6,16 @@ public class ResponseCore<T>
 {
     public ResponseCore()
     {
-        
+
     }
-    public ResponseCore(bool isSuccess,string[] Errors )
+    public ResponseCore(bool isSuccess, string[] Errors)
     {
         this.Errors = Errors;
-        this.IsSuccess= isSuccess;
+        this.IsSuccess = isSuccess;
     }
     public ResponseCore(bool isSuccess, T Result)
     {
-        IsSuccess=isSuccess;
+        IsSuccess = isSuccess;
         this.Result = Result;
     }
     public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;

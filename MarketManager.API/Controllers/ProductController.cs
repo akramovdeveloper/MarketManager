@@ -1,6 +1,5 @@
 ﻿using MarketManager.Application.Common.Models;
 using MarketManager.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketManager.API.Controllers
@@ -10,7 +9,7 @@ namespace MarketManager.API.Controllers
     public class ProductController : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<ResponseCore<List<Product>>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             return Ok();
         }
