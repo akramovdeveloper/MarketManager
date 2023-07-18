@@ -1,10 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace MarketManager.Application.UseCases.Users.Commands.UpdateUser;
-public class UpdateUserCommandValidator
+public class UpdateUserCommandValidator:AbstractValidator<UpdateUserCommand>
 {
+
+    public UpdateUserCommandValidator()
+    {
+
+        RuleFor(user=> user.Id).NotEmpty();
+        RuleFor(user => user.FullName)
+         .NotEmpty().WithMessage("Full Name is required.")
+         .MinimumLength(3)
+            .MaximumLength(50);
+
+        RuleFor(user => user.Username)
+                .NotEmpty().WithMessage("should be not empty value")
+                .MinimumLength(3)
+                .MaximumLength(20);
+
+        RuleFor(user => user.Phone)
+                .NotEmpty().WithMessage("Phone is required.")
+                .Matches(@"^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$")
+                    .WithMessage("Phone must be in the format of '+998 90 123 45 67'.");
+
+        RuleFor(user => user.Password)
+               .NotEmpty().WithMessage("Password is required.")
+               .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
+               .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$")
+                   .WithMessage("Password must contain at least one uppercase letter, one lowercase letter, and one digit.");
+    }
 }

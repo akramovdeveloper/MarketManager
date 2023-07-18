@@ -13,15 +13,11 @@ public class Program
 
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
-
-        builder.Services.AddControllers();
-        
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddApi();
 
         var app = builder.Build();
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-      
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
