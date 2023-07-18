@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 
 namespace MarketManager.Application.Common.Behaviours
 {
