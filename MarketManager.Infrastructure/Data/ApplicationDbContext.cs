@@ -17,6 +17,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<ExpiredProduct> ExpiredProducts { get; set; }
     public DbSet<PaymentType> PaymentTypes { get; set; }
 
+    public DbSet<Role> Roles { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
