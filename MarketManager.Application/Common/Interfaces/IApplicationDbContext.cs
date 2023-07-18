@@ -8,4 +8,7 @@ public interface IApplicationDbContext
     public DbSet<Distributer> Distributers { get; }
     public DbSet<User> Users { get; }
     public DbSet<ExpiredProduct> ExpiredProducts { get; }
+    public DbSet<Role> Roles { get; }
+    public DbSet<Permission> Permissions { get; }
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

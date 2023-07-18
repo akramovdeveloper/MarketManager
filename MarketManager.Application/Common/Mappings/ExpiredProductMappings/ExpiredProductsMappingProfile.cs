@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Mappings.ExpiredProductMappings
+namespace MarketManager.Application.Common.Mappings.ExpiredProductMappings;
+
+public class ExpiredProductsMappingProfile
 {
-    public class ExpiredProductsMappingProfile
-    {
-    }
 }
