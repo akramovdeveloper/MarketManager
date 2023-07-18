@@ -2,5 +2,12 @@
 
 public enum ProductCategory
 {
-    
+    Electronics,
+    HomeAndKitchen,
+    Health,
+    Toys,
+    Sports,
+    Groceries,
+    MilkyFood,
+    Food
 }
