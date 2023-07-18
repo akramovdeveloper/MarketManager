@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.Common.Mappings.ExpiredProductMappings
 {
-    internal class ExpiredProductsMappingProfile
+    public class ExpiredProductsMappingProfile
     {
     }
 }
