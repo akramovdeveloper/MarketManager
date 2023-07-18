@@ -1,4 +1,10 @@
-﻿namespace MarketManager.Infrastructure.Data;
+﻿using MarketManager.Application.Common.Interfaces;
+using MarketManager.Domain.Entities;
+using MarketManager.Domain.Entities.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
+namespace MarketManager.Infrastructure.Data;
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
