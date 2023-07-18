@@ -1,4 +1,0 @@
-﻿namespace MarketManager.Application.UseCases.Roles.Commands;
-public class DeleteRoleCommand
-{
-}
