@@ -38,7 +38,8 @@ public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommand, Guid>
             roleEntity.Permissions = foundPermissions;
         }
         await _context.Roles.AddAsync(roleEntity, cancellationToken);
-        await _context.
+        await _context.SaveChangesAsync(cancellationToken);
+        return roleEntity.Id;
 
     }
 }
