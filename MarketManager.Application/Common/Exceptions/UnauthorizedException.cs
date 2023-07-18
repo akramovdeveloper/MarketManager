@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.Common.Exceptions
 {
-    internal class UnauthorizedException
+    public class UnauthorizedException : Exception
     {
+        public UnauthorizedException(string message) : base(message)
+        { }
+
+        public UnauthorizedException(string message, Exception innerException) : base(message, innerException)
+        { }
     }
 }
