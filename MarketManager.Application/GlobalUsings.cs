@@ -1,0 +1,1 @@
+﻿global using MarketManager.Application.Common.Exceptions;
