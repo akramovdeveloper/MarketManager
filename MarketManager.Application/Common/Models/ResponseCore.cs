@@ -20,7 +20,7 @@ public class ResponseCore<T>
     }
     public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
     public bool IsSuccess { get; set; } = true;
-    public string[] Errors { get; set; }
-    public T Result { get; set; }
+    public string[]? Errors { get; set; }
+    public T? Result { get; set; }
 
 }

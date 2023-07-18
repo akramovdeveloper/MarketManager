@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\Carts\**" />
+    <EmbeddedResource Remove="UseCases\Carts\**" />
+    <None Remove="UseCases\Carts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -17,6 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Carts\Commands\" />
-    <Folder Include="UseCases\Carts\Queries\" />
     <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\DeleteExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />
