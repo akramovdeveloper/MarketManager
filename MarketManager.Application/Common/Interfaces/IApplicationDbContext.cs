@@ -7,5 +7,6 @@ public interface IApplicationDbContext
 {
 
     public DbSet<User> Users { get; }
-    public DbSet<ExpiredProduct> ExpiredProducts { get; }
+    public DbSet<ExpiredProduct> ExpiredProducts { get; } 
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
