@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarketManager.Application.UseCases.PaymentTypes.Queries.GetAllPaymentType
+﻿namespace MarketManager.Application.UseCases.PaymentTypes.Queries.GetAllPaymentType
 {
-    internal class GetAllPaymentTypeQuery
+    public class GetAllPaymentTypeQuery
     {
     }
 }

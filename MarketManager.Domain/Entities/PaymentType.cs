@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Domain.Entities
 {
-    internal class PaymentType
+    public class PaymentType:BaseEntity
     {
+        public string Name { get; set; }
     }
 }
