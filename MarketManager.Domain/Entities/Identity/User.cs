@@ -1,6 +1,6 @@
-﻿namespace MarketManager.Domain.Entities;
+﻿namespace MarketManager.Domain.Entities.Identity;
 
-public class User:BaseAuditableEntity
+public class User : BaseAuditableEntity
 {
     public string FullName { get; set; }
     public string Phone { get; set; }
