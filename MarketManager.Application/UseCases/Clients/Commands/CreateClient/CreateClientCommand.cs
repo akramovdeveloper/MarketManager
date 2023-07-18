@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using MarketManager.Application.Common.Interfaces;
+using MarketManager.Domain.Entities;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +17,25 @@ namespace MarketManager.Application.UseCases.Clients.Commands.CreateClient
     }
     public class CreateClientCommandHandler:IRequestHandler<CreateClientCommand, Guid>
     {
-        public Task<Guid> Handle(CreateClientCommand request, CancellationToken cancellationToken)
-        {
+        private readonly IApplicationDbContext _dbContext;
 
+        public CreateClientCommandHandler(IApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public async Task<Guid> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+        {
+            var newClient = new Client
+            {
+                Id = Guid.NewGuid(),
+                TotalPrice = request.TotalPrice,
+                Discount = request.Discount
+            };
+
+            _dbContext.Clients.Add(newClient);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return newClient.Id;
         }
     }
 }
