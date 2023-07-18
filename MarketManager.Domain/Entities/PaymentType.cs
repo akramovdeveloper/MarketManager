@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Mappings.ExpiredProductMappings
+namespace MarketManager.Domain.Entities
 {
-    public class ExpiredProductsMappingProfile
+    public class PaymentType:BaseEntity
     {
+        public string Name { get; set; }
     }
 }

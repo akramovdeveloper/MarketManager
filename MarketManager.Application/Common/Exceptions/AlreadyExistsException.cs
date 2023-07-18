@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.Common.Exceptions
 {
-    internal class AlreadyExistsException
+    public class AlreadyExistsException : Exception
     {
+        public AlreadyExistsException()
+            : base() { }
+
+        public AlreadyExistsException(string name, string key)
+            : base($"Entity \"{name}\" ({key}) already exists") { }
     }
 }
