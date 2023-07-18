@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using FluentValidation;
 using MediatR;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace MarketManager.Application.Common.Behaviours
 {
