@@ -10,4 +10,6 @@ public interface IApplicationDbContext
     public DbSet<ExpiredProduct> ExpiredProducts { get; }
     public DbSet<Role> Roles { get; }
     public DbSet<Permission> Permissions { get; }
+    public DbSet<ExpiredProduct> ExpiredProducts { get; } 
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
