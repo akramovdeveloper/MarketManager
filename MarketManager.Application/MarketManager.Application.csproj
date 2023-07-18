@@ -25,8 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="UseCases\Cards\Commands\" />
+    <Folder Include="UseCases\Cards\Queries\" />
+    <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\DeleteExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />
+    <Folder Include="UseCases\Orders\Commands\DeleteOrder\" />
+    <Folder Include="UseCases\Orders\Commands\UpdateOrder\" />
+    <Folder Include="UseCases\Orders\Queries\GetOrder\" />
+    <Folder Include="UseCases\Orders\Queries\GetAllOrders\" />
   </ItemGroup>
 
 </Project>
