@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.UseCases.Distributors.Queries
+namespace MarketManager.Application.UseCases.Suppliers.Queries.GetSupplierById
 {
-    internal class GetDistributorById
+    public class GetSupplierByIdQuery
     {
+
     }
 }
