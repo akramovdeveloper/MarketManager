@@ -56,7 +56,7 @@ public class GlobalExceptionMiddleware
     public async ValueTask<ActionResult> HandleException(HttpContext httpContext, Exception ex, HttpStatusCode httpStatusCode, string message)
     {
 
-        Log.Error("EXCEPTION:🔴 CLIENT_IP:{ClientIp}  CLIENT:{ERROR} IN YOUR PC HAVE VIRUS  MACHINENAME:{ } AGENT:{}" + $"\nDatetime:{DateTime.Now} | Message:{message} | Path:{httpContext.Request.Path}");
+        Log.Error("EXCEPTION:🔴 CLIENT_IP:{ClientIp}  CLIENT:{ERROR} " + $"\nDatetime:{DateTime.Now} | Message:{message} | Path:{httpContext.Request.Path}");
         HttpResponse response = httpContext.Response;
         response.ContentType = "application/json";
         response.StatusCode = (int)httpStatusCode;
