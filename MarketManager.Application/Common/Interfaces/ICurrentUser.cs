@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace MarketManager.Application.Common.Interfaces;
 public interface ICurrentUser
 {
-    string? Id { get; }
+    Guid? Id { get; }
 }
