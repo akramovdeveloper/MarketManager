@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Domain.Entities
 {
-    internal class Client
+    public class Client
     {
+        public double TotalPrice { get; set; }
+        public double Discount { get; set; }
     }
 }

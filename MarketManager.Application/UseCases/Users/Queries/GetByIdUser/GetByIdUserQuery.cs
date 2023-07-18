@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace MarketManager.Application.UseCases.Users.Queries.GetByIdUser;
-public class GetByIdUserQuery
+public class GetByIdUserQuery : IRequest<GetByIdUserResponse>
+{
+}
+
+public class GetByIdUserResponse
 {
 }
