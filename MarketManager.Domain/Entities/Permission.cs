@@ -1,4 +1,6 @@
-﻿namespace MarketManager.Domain.Entities;
+﻿using MarketManager.Domain.Entities.Identity;
+
+namespace MarketManager.Domain.Entities;
 
 public class Permission : BaseAuditableEntity
 {
