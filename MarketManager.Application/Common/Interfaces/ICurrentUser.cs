@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Models
+namespace MarketManager.Application.Common.Interfaces;
+public interface ICurrentUser
 {
-    public class ExpiredProductGetDto
-    {
-    }
+    string? Id { get; }
 }

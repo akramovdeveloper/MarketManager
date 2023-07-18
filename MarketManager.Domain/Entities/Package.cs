@@ -7,7 +7,6 @@ public class Package : BaseAuditableEntity
 
     public double IncomingCount { get; set; }
     public double Count { get; set; }
-
     public Guid DistibutorId { get; set; }
     public virtual Distributor Distibutor { get; set; }
     public double IncomingPrice { get; set; }
