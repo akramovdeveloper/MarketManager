@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MarketManager.Application.Common.DTOs.ExpiredProductDtos;
 using MarketManager.Application.Common.Interfaces;
+using MarketManager.Application.Common.Models;
 using MarketManager.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
