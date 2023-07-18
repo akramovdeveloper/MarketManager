@@ -7,4 +7,5 @@ using System.Threading.Tasks;
 namespace MarketManager.Application.UseCases.Users.Commands.UpdateUser;
 public class UpdateUserCommandValidator
 {
+
 }

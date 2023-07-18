@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="UseCases\Carts\Commands\" />
     <Folder Include="UseCases\Carts\Queries\" />
+    <Folder Include="UseCases\Clients\Queries\" />
     <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\DeleteExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />
