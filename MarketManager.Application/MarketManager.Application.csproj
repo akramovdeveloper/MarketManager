@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\DeleteExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />
   </ItemGroup>
