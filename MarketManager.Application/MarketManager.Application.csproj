@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\Carts\**" />
+    <EmbeddedResource Remove="UseCases\Carts\**" />
+    <None Remove="UseCases\Carts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
@@ -24,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Carts\Commands\" />
-    <Folder Include="UseCases\Carts\Queries\" />
     <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\DeleteExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />

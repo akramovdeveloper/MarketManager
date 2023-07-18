@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MarketManager.Application.UseCases.Users.Queries.GetAllUser;
-public class GetAllUserQuery
+public record GetAllUserQuery
 {
 }
