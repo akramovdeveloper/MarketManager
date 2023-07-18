@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.Common.DTOs.ExpiredProductDtos
 {
-    internal class ExpiredProductGetDto
+    public class ExpiredProductGetDto
     {
     }
 }

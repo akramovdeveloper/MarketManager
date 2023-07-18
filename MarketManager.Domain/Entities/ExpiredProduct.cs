@@ -1,6 +1,6 @@
 ﻿namespace MarketManager.Domain.Entities
 {
-    public class ExpiredProducts
+    public class ExpiredProduct
     {
         public Guid Id { get; set; }
         public Guid PackageId { get; set; }

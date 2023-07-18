@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MarketManager.Application.Common.DTOs.ExpiredProductDtos;
+using MediatR;
 
 namespace MarketManager.Application.UseCases.ExpiredProducts.Queries
 {
-    internal class GetByIdExpiredProductsQuery
+    public class GetByIdExpiredProductsQuery : IRequest<ExpiredProductGetDto>
     {
+
     }
 }
