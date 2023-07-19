@@ -13,7 +13,7 @@ namespace MarketManager.Domain.Entities
         public Guid ClientId { get; set; }
         public decimal CardPriceSum { get; set; }
         public decimal CashPurchaseSum  { get; set; }
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<Cart> Cards { get; set; }
 
 
         public Client Client { get; set; }

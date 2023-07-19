@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Services;
-public class SomeService
+namespace MarketManager.Domain.Entities
 {
+    public class ProductType
+    {
+    }
 }
