@@ -18,7 +18,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<ExpiredProduct> ExpiredProducts { get; set; }
     public DbSet<PaymentType> PaymentTypes { get; set; }
 
+    public DbSet<Order> Orders { get; set; }
     public DbSet<Role> Roles { get; set; }
+
+    public DbSet<Permission> Permissions { get; set; }
+    public DbSet<Cart> Carts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
