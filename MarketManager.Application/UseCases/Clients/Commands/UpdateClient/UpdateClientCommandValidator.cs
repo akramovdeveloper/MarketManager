@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.UseCases.Clients.Commands.UpdateClient
 {
-    internal class UpdateClientCommandValidator
+    public class UpdateClientCommandValidator
     {
     }
 }

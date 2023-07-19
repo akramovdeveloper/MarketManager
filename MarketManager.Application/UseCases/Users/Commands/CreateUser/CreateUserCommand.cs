@@ -1,10 +1,11 @@
-﻿using MarketManager.Application.Common.Interfaces;
+﻿using MarketManager.Application.Common.Extensions;
+using MarketManager.Application.Common.Interfaces;
 using MarketManager.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketManager.Application.UseCases.Users.Commands.CreateUser;
-public record CreateUserCommand:IRequest<Guid>
+public record CreateUserCommand : IRequest<Guid>
 {
     public string FullName { get; set; }
     public string Phone { get; set; }
@@ -20,32 +21,30 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
 
     public CreateUserCommandHandler(IApplicationDbContext context)
             => _context = context;
-    
-    
+
+
 
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var roles = await _context.Roles.ToListAsync(cancellationToken);
+      
+        
+
         var userRole = new List<Role>();
-        if(request?.RoleIds?.Length > 0)
-        {
-            foreach (var roleId in request.RoleIds)
+        if (request?.RoleIds?.Length > 0)
+            roles.ForEach(role => 
             {
-                foreach (var role in roles)
-                {
-                    if(role.Id == roleId)
-                    {
-                        userRole.Add(role);
-                    }
-                }
-            }
-        }
+               if (request.RoleIds.Any(id => id == role.Id)) 
+                  userRole.Add(role); 
+            });
+
             
+
         User user = new User
         {
             Id = Guid.NewGuid(),
             Username = request.Username,
-            Password = request.Password,
+            Password = request.Password.GetHashedString(),
             Phone = request.Phone,
             Roles = userRole
         };
@@ -53,6 +52,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
         await _context.SaveChangesAsync(cancellationToken);
         return user.Id;
 
-        
+
     }
 }

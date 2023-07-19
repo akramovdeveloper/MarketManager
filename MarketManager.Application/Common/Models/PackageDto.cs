@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Models
+namespace MarketManager.Application.Common.Models;
+
+public class PackageDto
 {
-    internal class PackageDto
-    {
-    }
 }

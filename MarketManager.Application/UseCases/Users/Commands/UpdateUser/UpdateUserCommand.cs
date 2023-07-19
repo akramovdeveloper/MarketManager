@@ -1,4 +1,5 @@
-﻿using MarketManager.Application.Common.Interfaces;
+﻿using MarketManager.Application.Common.Extensions;
+using MarketManager.Application.Common.Interfaces;
 using MarketManager.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ public record UpdateUserCommand:IRequest<bool>
     public string FullName { get; set; }
     public string Phone { get; set; }
     public string Username { get; set; }
-    public string Password { get; set; }
+    public string? Password { get; set; }
     public Guid[]? RoleIds { get; set; }
 }
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
@@ -25,23 +26,24 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
        var foundUser = await _context.Users.FindAsync(new object[] {request.Id},cancellationToken);
         if (foundUser is null)
             throw new NotFoundException(nameof(User), request.Id);
-
-        if(request?.RoleIds?.Length > 0)
+        
+        if (request?.RoleIds?.Length > 0)
         {
             foundUser?.Roles?.Clear();
-            foreach (var roleId in request.RoleIds)
+            roles.ForEach(role =>
             {
-                foreach (var role in roles)
-                {
-                    if (role.Id == roleId)
-                        foundUser?.Roles?.Add(role);
-                }
-            }
+                if (request.RoleIds.Any(id => id == role.Id))
+                    foundUser.Roles.Add(role);
+            });
+
         }
         foundUser.Username = request.Username;
-        foundUser.Password = request.Password;
+        if(!string.IsNullOrEmpty(request.Password))
+        foundUser.Password = request.Password.GetHashedString();
         foundUser.Phone = request.Phone;
         foundUser.FullName = request.FullName;
+
+        
 
         return (await _context.SaveChangesAsync(cancellationToken)) > 0;
 

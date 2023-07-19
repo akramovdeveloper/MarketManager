@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MarketManager.Application.Common.JWT.Interfaces;
+using MarketManager.Application.Common.JWT.Service;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace MarketManager.Application;
@@ -11,6 +13,8 @@ public static class ConfigureServices
         {
             option.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
+        services.AddScoped<IUserRefreshToken,RefreshToken>();
+        services.AddScoped<IJwtToken, JwtToken>();
 
 
         return services;

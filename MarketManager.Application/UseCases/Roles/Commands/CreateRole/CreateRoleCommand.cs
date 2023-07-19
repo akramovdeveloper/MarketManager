@@ -32,7 +32,7 @@ public class CreateRoleCommandHandler : IRequestHandler<CreateRoleCommand, Guid>
             List<Permission> foundPermissions = new();
             foreach (var item in request.PermissionsIds)
             {
-                var permission = await _context.Permissions.FindAsync(new object[] { item });
+                var permission = await _context.Permissions.FindAsync(new object[] { item }, cancellationToken);
                 foundPermissions.Add(permission);
             }
             roleEntity.Permissions = foundPermissions;
