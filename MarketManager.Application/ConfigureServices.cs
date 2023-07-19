@@ -16,7 +16,6 @@ public static class ConfigureServices
         services.AddScoped<IUserRefreshToken,RefreshToken>();
         services.AddScoped<IJwtToken, JwtToken>();
 
-
         return services;
     }
 }
