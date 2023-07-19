@@ -27,7 +27,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public DbSet<Permission> Permissions => throw new NotImplementedException();
 
-    public DbSet<Permission> Permissions { get; set; }
     public DbSet<Cart> Carts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

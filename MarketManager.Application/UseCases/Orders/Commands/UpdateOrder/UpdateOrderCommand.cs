@@ -32,7 +32,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Ord
 
     public async Task<OrderWithCarts> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
-        Order order = await FilterIfOrderExsists(request.Id);
+        Order order = await FilterIfOrderExists(request.Id);
         IEnumerable<Cart> carts = FilterifCartIdsAreAvialible(request.Carts);
         _mapper.Map(request, order);
         order.Carts = carts.ToArray();
@@ -50,7 +50,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Ord
                     $" there is no cart with this {Id} id. ");
     }
 
-    private async Task<Order> FilterIfOrderExsists(Guid id)
+    private async Task<Order> FilterIfOrderExists(Guid id)
      =>     await _dbContext.Orders.Include("Carts")
                 .FirstOrDefaultAsync(x => x.Id == id)
                  ?? throw new NotFoundException(
