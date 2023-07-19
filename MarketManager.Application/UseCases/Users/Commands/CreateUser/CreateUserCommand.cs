@@ -1,4 +1,5 @@
-﻿using MarketManager.Application.Common.Interfaces;
+﻿using MarketManager.Application.Common.Extensions;
+using MarketManager.Application.Common.Interfaces;
 using MarketManager.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
         var userRole = new List<Role>();
         if(request?.RoleIds?.Length > 0)
         {
+
             foreach (var roleId in request.RoleIds)
             {
                 foreach (var role in roles)
@@ -45,7 +47,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
         {
             Id = Guid.NewGuid(),
             Username = request.Username,
-            Password = request.Password,
+            Password = request.Password.GetHashedString(),
             Phone = request.Phone,
             Roles = userRole
         };
