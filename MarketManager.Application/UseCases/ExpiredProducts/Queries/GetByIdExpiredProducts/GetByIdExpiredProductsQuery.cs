@@ -24,8 +24,7 @@ namespace MarketManager.Application.UseCases.ExpiredProducts.Queries
 
         public Task<ExpiredProductGetDto> Handle(GetByIdExpiredProductsQuery request, CancellationToken cancellationToken)
         {
-            ExpiredProduct? res = _context.ExpiredProducts.FirstOrDefault(x=>x.Id== request.Id);
-            if()
+            throw new NotImplementedException();
         }
     }
 }
