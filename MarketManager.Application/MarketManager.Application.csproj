@@ -13,7 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="UseCases\Carts\ResponseModels\CardDto.cs" />
+    <Compile Include="UseCases\Carts\Commands\CreateCart\CreateCartCommand.cs" />
+    <Compile Include="UseCases\Carts\Commands\DeleteCart\DeleteCartCommand.cs" />
+    <Compile Include="UseCases\Carts\Commands\UpdateCart\UpdateCartCommand.cs" />
+    <Compile Include="UseCases\Carts\Queries\GetAllCarts\GetAllCartsQuery.cs" />
+    <Compile Include="UseCases\Carts\Queries\GetCartById\GetCartByIdQuery.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,8 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Carts\Commands\" />
-    <Folder Include="UseCases\Carts\Queries\" />
     <Folder Include="UseCases\Clients\Queries\" />
     <Folder Include="UseCases\ExpiredProducts\Command\CreateExpiredProduct\" />
     <Folder Include="UseCases\ExpiredProducts\Command\UpdateExpiredProduct\" />

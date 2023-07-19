@@ -41,7 +41,7 @@ public class UpdatePackageCommandHandler : IRequestHandler<UpdatePackageCommand>
             throw new NotFoundException(nameof(Product), request.ProductId);
         //package.ProductId = product.Id;
 
-        var supplier = await _context.Packages.FindAsync(request.Id);
+        var supplier = await _context.Packages.FindAsync(request.SupplierId);
         if (supplier is null)
             throw new NotFoundException(nameof(Supplier), request.SupplierId);
         // package.SupplierId = supplier.Id;
