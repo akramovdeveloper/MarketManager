@@ -6,8 +6,13 @@ namespace MarketManager.Application.Common.Interfaces;
 public interface IApplicationDbContext
 {
 
-    public DbSet<User> Users { get; }
-    public DbSet<ExpiredProduct> ExpiredProducts { get; }
+     DbSet<User> Users { get; }
+     DbSet<Client> Clients { get; }   
+     DbSet<ExpiredProduct> ExpiredProducts { get; }
+    DbSet<Role> Roles { get; }
+    DbSet<Permission> Permissions { get; }
 
-    
+    DbSet<Order> Orders { get; }
+    DbSet<Cart> Carts { get; }
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
