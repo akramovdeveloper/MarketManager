@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Models
+namespace MarketManager.Application.UseCases.Carts.ResponseModels
 {
-    public class ExpiredProductGetDto
+    public class CartDto
     {
+
     }
 }

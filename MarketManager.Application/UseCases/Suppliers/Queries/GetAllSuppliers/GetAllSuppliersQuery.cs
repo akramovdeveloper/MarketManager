@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.Models
+namespace MarketManager.Application.UseCases.Suppliers.Queries.GetAllSuppliers;
+
+public class GetAllSuppliersQuery
 {
-    public class PackageDto
-    {
-    }
+
 }

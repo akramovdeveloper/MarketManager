@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
+namespace MarketManager.Application.Common.Mappings.DistributerMappings
 {
-    internal class CreateOrderCommmandValidation
+    internal class DistributerMappingProfiles
     {
     }
 }
