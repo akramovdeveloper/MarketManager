@@ -1,5 +1,6 @@
 ﻿using MarketManager.Application.Common.JWT.Interfaces;
 using MarketManager.Application.UseCases.Users.Commands.LoginUser;
+using MarketManager.Application.UseCases.Users.Response;
 using MarketManager.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ public class RefreshToken : IUserRefreshToken
         throw new NotImplementedException();
     }
 
-    public ValueTask<bool> AuthenAsync(LoginUserCommand user)
+    public ValueTask<UserResponse> AuthenAsync(LoginUserCommand user)
     {
         throw new NotImplementedException();
     }

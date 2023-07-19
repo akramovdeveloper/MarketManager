@@ -1,6 +1,8 @@
-﻿using MarketManager.Application.Common.JWT.Interfaces;
+﻿using MarketManager.Application.Common.Interfaces;
+using MarketManager.Application.Common.JWT.Interfaces;
 using MarketManager.Application.Common.JWT.Models;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketManager.Application.UseCases.Users.Commands.LoginUser;
 public class LoginUserCommand:IRequest<TokenResponse>
@@ -12,21 +14,22 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, TokenRe
 {
     private readonly IJwtToken _jwtToken;
     private readonly IUserRefreshToken _userRefreshToken;
-    public LoginUserCommandHandler(IJwtToken jwtToken, IUserRefreshToken userRefreshToken)
+    private readonly IApplicationDbContext _context;
+    public LoginUserCommandHandler(IJwtToken jwtToken, IUserRefreshToken userRefreshToken, IApplicationDbContext context)
     {
         _jwtToken = jwtToken;
         _userRefreshToken = userRefreshToken;
+        _context = context;
     }
 
     public async Task<TokenResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        if(await _userRefreshToken.AuthenAsync(request))
-        {
+        var authenUser =await _userRefreshToken.AuthenAsync(request);
+        if (authenUser is null) 
+            throw new UnauthorizedException(request.Username,request.Password);
 
-        }
-        else
-        {
-            throw new UnauthorizedException();
-        }
+        var tokenResponse = await _jwtToken.CreateTokenAsync(authenUser.Username, authenUser.Roles,cancellationToken); 
+
+        return tokenResponse;
     }
 }
