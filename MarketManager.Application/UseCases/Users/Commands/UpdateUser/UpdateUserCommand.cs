@@ -1,4 +1,5 @@
-﻿using MarketManager.Application.Common.Interfaces;
+﻿using MarketManager.Application.Common.Extensions;
+using MarketManager.Application.Common.Interfaces;
 using MarketManager.Domain.Entities.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
             }
         }
         foundUser.Username = request.Username;
-        foundUser.Password = request.Password;
+        foundUser.Password = request.Password.GetHashedString();
         foundUser.Phone = request.Phone;
         foundUser.FullName = request.FullName;
 
