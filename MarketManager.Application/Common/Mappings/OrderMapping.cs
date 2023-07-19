@@ -2,37 +2,30 @@
 using MarketManager.Application.UseCases.Orders.Commands.CreateOrder;
 using MarketManager.Application.UseCases.Orders.Commands.DeleteOrder;
 using MarketManager.Application.UseCases.Orders.Commands.UpdateOrder;
-using MarketManager.Application.UseCases.Orders.Queries.GetAllOrders;
-using MarketManager.Application.UseCases.Orders.ResponseModels;
+using MarketManager.Application.UseCases.Orders.Queries.GetOrder;
 using MarketManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static MarketManager.Application.UseCases.Orders.Queries.GetAllOrders.GetallOrderCommmandHandler;
 
-namespace MarketManager.Application.Common.Mappings
+namespace MarketManager.Application.Common.Mappings;
+
+public class OrderMapping : Profile
 {
-    public class OrderMapping : Profile
+    public OrderMapping()
     {
-        public OrderMapping()
-        {
-            OrderMappings();
-            OrderWithCart();
-        }
+        OrderMappings();
+        OrderWithCart();
+    }
 
-        private void OrderWithCart()
-        {
-            CreateMap<CreateOrderCommand, Order>();
-            CreateMap<UpdateOrderCommand, Order>();
-            CreateMap<DeleteOrderCommand, Order>();
-            CreateMap<GetAllOrderQuery, OrderDto>();
-        }
+    private void OrderWithCart()
+    {
+        CreateMap<CreateOrderCommand, Order>();
+        CreateMap<UpdateOrderCommand, Order>();
+        CreateMap<DeleteOrderCommand, Order>();
+    }
 
-        private void OrderMappings()
-        {
-            CreateMap<OrderDto, Order>().ReverseMap();
-            CreateMap<OrderWithCarts, Order>().ReverseMap();
-        }
+    private void OrderMappings()
+    {
+        CreateMap< Order, GetOrderByIdResponse>();
+        CreateMap< Order, GetAllOrderQueryResponse>();
     }
 }
