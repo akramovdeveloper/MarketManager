@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using MarketManager.Application.Common.Exceptions;
 using MarketManager.Application.Common.Interfaces;
-using MarketManager.Application.UseCases.Orders.ResponseModels;
 using MarketManager.Domain.Entities;
 using MediatR;
 
 namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
 {
 
-    public class CreateOrderCommand : IRequest<OrderWithCarts>
+    public class CreateOrderCommand : IRequest<Guid>
     {
         public decimal TotalPrice { get; set; }
 
@@ -18,7 +16,8 @@ namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
 
         public ICollection<Guid> Carts { get; set; }
     }
-    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, OrderWithCarts>
+
+    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid>
     {
         IApplicationDbContext _dbContext;
         IMapper _mapper;
@@ -29,7 +28,7 @@ namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
             _mapper = mapper;
         }
 
-        public async Task<OrderWithCarts> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
 
             IEnumerable<Cart>? carts = FilterIfAllCartsExsist(request.Carts);
@@ -39,7 +38,7 @@ namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
             await _dbContext.Orders.AddAsync(order, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return _mapper.Map<OrderWithCarts>(order);
+            return order.Id;
         }
 
         private IEnumerable<Cart> FilterIfAllCartsExsist(ICollection<Guid> carts)
@@ -49,5 +48,4 @@ namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
                     ?? throw new NotFoundException($" There is no cart with this {Id} id. ");
         }
     }
-
 }
