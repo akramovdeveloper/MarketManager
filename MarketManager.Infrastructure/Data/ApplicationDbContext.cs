@@ -12,6 +12,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
 
     }
+    public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Client> Clients { get; set; }
 
