@@ -35,8 +35,6 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
                if (request.RoleIds.Any(id => id == role.Id)) 
                   userRole.Add(role); 
             });
-            
-        
 
 
         User user = new User
