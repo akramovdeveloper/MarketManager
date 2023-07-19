@@ -21,24 +21,29 @@ namespace MarketManager.Application.UseCases.ExpiredProducts.Command.CreateExpir
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
-        
-        public CreateExpiredProductCommandHandler(IMapper mapper, IApplicationDbContext context)
+        private readonly ICurrentUser _currentUser;
+        public CreateExpiredProductCommandHandler(IMapper mapper, IApplicationDbContext context, ICurrentUser currentUser)
         {
             _mapper = mapper;
             _context = context;
+            _currentUser = currentUser;
         }
 
-        public Task<CreateExpiredProductResponce> Handle(CreateExpiredProductCommand request, CancellationToken cancellationToken)
+        public async Task<CreateExpiredProductResponce> Handle(CreateExpiredProductCommand request, CancellationToken cancellationToken)
         {
             var expiredProduct = new ExpiredProduct
             {
                 Id = Guid.NewGuid(),
                 PackageId = request.PackageId,
                 Count = request.Count,
-                DeletedTime = DateTime.Now,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                CreatedById = _currentUser.Id
             };
+
+            var entity = _context.ExpiredProducts.Add(expiredProduct);
+            await _context.SaveChangesAsync();
+            CreateExpiredProductResponce res = _mapper.Map<CreateExpiredProductResponce>(entity);
+            return res;
         }
     }
-
 }

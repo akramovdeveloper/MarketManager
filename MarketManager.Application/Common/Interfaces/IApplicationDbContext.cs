@@ -8,4 +8,6 @@ public interface IApplicationDbContext
 
     public DbSet<User> Users { get; }
     public DbSet<ExpiredProduct> ExpiredProducts { get; }
+
+    
 }
