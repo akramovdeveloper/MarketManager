@@ -1,9 +1,11 @@
 ﻿using MarketManager.Application.Common.Exceptions;
+using MarketManager.Application.Common.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MarketManager.API.Middlewares;
@@ -19,16 +21,14 @@ public class GlobalExceptionMiddleware
 
     public async Task Invoke(HttpContext httpContext)
     {
-
-
         try
         {
-
             await _next(httpContext);
-         
         }
+
         catch (NotFoundException ex)
         {
+
             await HandleException(httpContext, ex, HttpStatusCode.NotFound, ex.Message);
         }
         catch(AlreadyExistsException ex)
@@ -44,7 +44,6 @@ public class GlobalExceptionMiddleware
             await HandleException(httpContext, ex, HttpStatusCode.BadRequest, ex.Message);
         }
 
-
         catch (Exception ex)
         {
             await HandleException(httpContext, ex, HttpStatusCode.InternalServerError, ex.Message);
@@ -53,18 +52,20 @@ public class GlobalExceptionMiddleware
     }
 
 
-    public async ValueTask<ActionResult> HandleException(HttpContext httpContext, Exception ex, HttpStatusCode httpStatusCode, string message)
+    public async ValueTask<ActionResult> HandleException<TException>(HttpContext httpContext, TException ex, HttpStatusCode httpStatusCode, string message)
     {
 
         Log.Error("EXCEPTION:🔴 CLIENT_IP:{ClientIp}  CLIENT:{ERROR} " + $"\nDatetime:{DateTime.Now} | Message:{message} | Path:{httpContext.Request.Path}");
         HttpResponse response = httpContext.Response;
         response.ContentType = "application/json";
         response.StatusCode = (int)httpStatusCode;
-      
-        var error = new
+
+        ResponseCore<TException> error = new()
         {
-            Message = message,
-            StatusCode = (int)httpStatusCode
+            Errors = new string[] { message },
+            StatusCode = httpStatusCode,
+            IsSuccess = false,
+            Result = ex
         };
 
         return await Task.FromResult(new BadRequestObjectResult(error));

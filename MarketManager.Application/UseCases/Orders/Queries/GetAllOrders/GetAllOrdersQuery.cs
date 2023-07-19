@@ -29,4 +29,13 @@ public class GetallOrderCommmandHandler : IRequestHandler<GetAllOrderQuery, List
 
         return dtos;
     }
+    public class GetAllOrderQueryResponse
+    {
+        public Guid Id { get; set; }
+        public decimal TotalPrice { get; set; }
+
+        public Guid ClientId { get; set; }
+        public decimal CardPriceSum { get; set; }
+        public decimal CashPurchaseSum { get; set; }
+    }
 }
