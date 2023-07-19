@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using MarketManager.Application.Common.Interfaces;
-using MarketManager.Application.UseCases.Orders.ResponseModels;
 using MarketManager.Domain.Entities;
 using MediatR;
 
 namespace MarketManager.Application.UseCases.Orders.Commands.DeleteOrder;
 
-public record DeleteOrderCommand(Guid Id) : IRequest<OrderDto>;
+public record DeleteOrderCommand(Guid Id) : IRequest;
 
-public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, OrderDto>
+public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 {
     private IApplicationDbContext _dbContext;
     private IMapper _mapper;
@@ -19,18 +18,18 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Ord
         _mapper = mapper;
     }
 
-    public async Task<OrderDto> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
         Order order = FilterIfOrderExsists(request.Id);
 
         _dbContext.Orders.Remove(order);
         await _dbContext.SaveChangesAsync(cancellationToken);
-
-        return _mapper.Map<OrderDto>(order);
     }
 
     private Order FilterIfOrderExsists(Guid id)
-        => _dbContext.Orders.FirstOrDefault(c => c.Id == id)
-            ?? throw new NotFoundException(" There is no order with id. ");
+        => _dbContext.Orders
+        .FirstOrDefault(c => c.Id == id)
+            ?? throw new NotFoundException(
+                " There is no order with id. ");
 
 }

@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using MarketManager.Application.Common.Interfaces;
-using MarketManager.Application.UseCases.Orders.ResponseModels;
 using MarketManager.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketManager.Application.UseCases.Orders.Commands.UpdateOrder;
 
-public class UpdateOrderCommand : IRequest<OrderWithCarts>
+public class UpdateOrderCommand : IRequest
 {
     public Guid Id { get; set; }
     public decimal TotalPrice { get; set; }
@@ -19,7 +18,7 @@ public class UpdateOrderCommand : IRequest<OrderWithCarts>
     public ICollection<Guid> Carts { get; set; }
 
 }
-public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, OrderWithCarts>
+public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
 {
     IApplicationDbContext _dbContext;
     IMapper _mapper;
@@ -30,16 +29,14 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Ord
         _mapper = mapper;
     }
 
-    public async Task<OrderWithCarts> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
-        Order order = await FilterIfOrderExsists(request.Id);
+        Order order = await FilterIfOrderExists(request.Id);
         IEnumerable<Cart> carts = FilterifCartIdsAreAvialible(request.Carts);
         _mapper.Map(request, order);
         order.Carts = carts.ToArray();
         _dbContext.Orders.Update(order);
         await _dbContext.SaveChangesAsync(cancellationToken);
-
-        return _mapper.Map<OrderWithCarts>(order);
     }
 
     private IEnumerable<Cart> FilterifCartIdsAreAvialible(ICollection<Guid> orderIds)
@@ -50,7 +47,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Ord
                     $" there is no cart with this {Id} id. ");
     }
 
-    private async Task<Order> FilterIfOrderExsists(Guid id)
+    private async Task<Order> FilterIfOrderExists(Guid id)
      =>     await _dbContext.Orders.Include("Carts")
                 .FirstOrDefaultAsync(x => x.Id == id)
                  ?? throw new NotFoundException(
