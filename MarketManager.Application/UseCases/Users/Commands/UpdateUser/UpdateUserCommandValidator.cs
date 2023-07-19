@@ -24,7 +24,6 @@ public class UpdateUserCommandValidator:AbstractValidator<UpdateUserCommand>
                     .WithMessage("Phone must be in the format of '+998 90 123 45 67'.");
 
         RuleFor(user => user.Password)
-               .NotEmpty().WithMessage("Password is required.")
                .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
                .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$")
                    .WithMessage("Password must contain at least one uppercase letter, one lowercase letter, and one digit.");

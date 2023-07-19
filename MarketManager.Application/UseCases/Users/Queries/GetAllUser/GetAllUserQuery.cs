@@ -2,7 +2,10 @@
 using MarketManager.Application.Common.Interfaces;
 using MarketManager.Application.UseCases.Users.Response;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MarketManager.Application.UseCases.Users.Queries.GetAllUser;
 public record GetAllUserQuery:IRequest<List<UserResponse>>;
@@ -21,3 +24,5 @@ public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, List<User
         return result;  
     }
 }
+
+

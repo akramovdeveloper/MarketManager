@@ -27,6 +27,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var roles = await _context.Roles.ToListAsync(cancellationToken);
+      
+        
 
         var userRole = new List<Role>();
         if (request?.RoleIds?.Length > 0)
@@ -35,9 +37,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
                if (request.RoleIds.Any(id => id == role.Id)) 
                   userRole.Add(role); 
             });
-            
-        
 
+            
 
         User user = new User
         {
