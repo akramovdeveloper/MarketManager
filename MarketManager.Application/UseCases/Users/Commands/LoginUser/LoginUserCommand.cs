@@ -14,12 +14,12 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, TokenRe
 {
     private readonly IJwtToken _jwtToken;
     private readonly IUserRefreshToken _userRefreshToken;
-    private readonly IApplicationDbContext _context;
-    public LoginUserCommandHandler(IJwtToken jwtToken, IUserRefreshToken userRefreshToken, IApplicationDbContext context)
+  
+    public LoginUserCommandHandler(IJwtToken jwtToken, IUserRefreshToken userRefreshToken)
     {
         _jwtToken = jwtToken;
         _userRefreshToken = userRefreshToken;
-        _context = context;
+       
     }
 
     public async Task<TokenResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
