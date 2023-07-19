@@ -1,4 +1,5 @@
 
+using MarketManager.API.Middlewares;
 using MarketManager.Application;
 using MarketManager.Infrastructure;
 
@@ -23,13 +24,13 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-     
-
         app.UseStaticFiles();
 
         app.UseHttpsRedirection();
 
         app.UseRouting();
+
+        app.UseGlobalExceptionMiddleware();
 
         app.UseAuthorization();
 
