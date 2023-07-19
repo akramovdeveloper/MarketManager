@@ -10,7 +10,6 @@ namespace MarketManager.Application.Common.Mappings
     {
         public CartMapping()
         {
-            CartMappings();
             CartWithCart();
         }
 
@@ -19,12 +18,6 @@ namespace MarketManager.Application.Common.Mappings
             CreateMap<CreateCartCommand, Cart>();
             CreateMap<UpdateCartCommand, Cart>();
             CreateMap<DeleteCartCommand, Cart>();
-        }
-
-        private void CartMappings()
-        {
-            CreateMap<Cart, GetCartByIdResponse>();
-            CreateMap<Cart, GetAllCartQueryResponse>();
         }
     }
 }
