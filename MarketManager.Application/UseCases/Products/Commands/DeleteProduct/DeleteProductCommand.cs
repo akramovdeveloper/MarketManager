@@ -26,8 +26,6 @@ namespace MarketManager.Application.UseCases.Products.Commands.DeleteProduct
 
             _context.Products.Remove(entity);
 
-            entity.AddDomainEvent(new ProductDeletedEvent(entity));
-
             await _context.SaveChangesAsync(cancellationToken);
         }
 
