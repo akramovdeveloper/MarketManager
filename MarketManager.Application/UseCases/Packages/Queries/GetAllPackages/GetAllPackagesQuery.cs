@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using MarketManager.Domain.Entities;
+using MediatR;
 
-namespace MarketManager.Application.UseCases.Packages.Queries.GetAllPackages
+namespace MarketManager.Application.UseCases.Packages.Queries.GetAllPackages;
+
+public record GetAllPackagesQuery : IRequest<GetAllPackagesQueryResponse>;
+
+public class GetAllPackagesQueryHandler : IRequestHandler<GetAllPackagesQuery, GetAllPackagesQueryResponse>
 {
-    internal class GetAllPackages
+    public Task<GetAllPackagesQueryResponse> Handle(GetAllPackagesQuery request, CancellationToken cancellationToken)
     {
+        throw new NotImplementedException();
     }
+}
+public class GetAllPackagesQueryResponse
+{
+    public List<Package> Packages { get; set; }
 }

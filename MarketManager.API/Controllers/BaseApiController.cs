@@ -8,6 +8,6 @@ namespace MarketManager.API.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
-        protected IMediator _mediatorProxy => HttpContext.RequestServices.GetRequiredService<IMediator>();
+        protected IMediator _mediator => HttpContext.RequestServices.GetRequiredService<IMediator>();
     }
 }

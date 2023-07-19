@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MarketManager.Application.UseCases.Packages.Queries.GetAllPackages;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketManager.API.Controllers
@@ -8,9 +9,9 @@ namespace MarketManager.API.Controllers
     public class PackageController : BaseApiController
     {
         [HttpGet]
-        public ValueTask<string> GetAll()
+        public async ValueTask<string> GetAll()
         {
-
+            await _mediator.Send(new GetAllPackagesQuery());
         }
     }
 }
