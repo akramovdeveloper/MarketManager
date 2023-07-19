@@ -20,6 +20,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<PaymentType> PaymentTypes { get; set; }
 
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Product> Products { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public DbSet<Package> Packages { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public DbSet<ProductType> ProductTypes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public DbSet<Permission> Permissions => throw new NotImplementedException();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

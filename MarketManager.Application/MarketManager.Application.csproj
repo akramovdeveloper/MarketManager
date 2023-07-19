@@ -41,6 +41,7 @@
     <Folder Include="UseCases\Orders\Commands\UpdateOrder\" />
     <Folder Include="UseCases\Orders\Queries\GetOrder\" />
     <Folder Include="UseCases\Orders\Queries\GetAllOrders\" />
+    <Folder Include="UseCases\Packages\Commands\" />
   </ItemGroup>
 
 </Project>

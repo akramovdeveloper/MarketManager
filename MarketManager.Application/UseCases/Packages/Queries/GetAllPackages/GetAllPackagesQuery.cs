@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.DTOs.DistributerDTO
+namespace MarketManager.Application.UseCases.Packages.Queries.GetAllPackages
 {
-    internal class DistributorGetDTO
+    internal class GetAllPackages
     {
     }
 }
