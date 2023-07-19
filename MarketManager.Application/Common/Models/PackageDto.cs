@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.Common.Models
 {
-    internal class PackageDto
+    public class PackageDto
     {
     }
 }
