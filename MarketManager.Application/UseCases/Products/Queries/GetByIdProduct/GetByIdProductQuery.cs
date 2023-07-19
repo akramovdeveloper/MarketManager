@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketManager.Application.UseCases.Products.Queries.GetByIdProduct
 {
-    internal class GetByIdProduct
+    internal class GetByIdProductQuery
     {
     }
 }
