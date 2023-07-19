@@ -3,8 +3,8 @@ using MarketManager.Domain.Entities.Identity;
 using MediatR;
 
 namespace MarketManager.Application.UseCases.Users.Commands.DeleteUser;
-public record DeleteUserCommand(Guid Id):IRequest<bool>;
-public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
+public record DeleteUserCommand(Guid Id):IRequest;
+public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
 {
     private readonly IApplicationDbContext _context;
 
@@ -12,7 +12,7 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
             => _context = context;
         
     
-    public async Task<bool> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
      
         var foundUser = await _context.Users.FindAsync(new object[] {request.Id},cancellationToken);
@@ -20,8 +20,8 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
             throw new NotFoundException(nameof(User), request.Id);
         _context.Users.Remove(foundUser);
 
-        return (await _context.SaveChangesAsync(cancellationToken)) > 0;
-
+       await _context.SaveChangesAsync(cancellationToken);
+        
 
     }
 }

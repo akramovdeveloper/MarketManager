@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketManager.Application.UseCases.Users.Commands.UpdateUser;
-public record UpdateUserCommand:IRequest<bool>
+public record UpdateUserCommand:IRequest
 {
     public Guid Id { get; set; }
     public string FullName { get; set; }
@@ -14,13 +14,13 @@ public record UpdateUserCommand:IRequest<bool>
     public string? Password { get; set; }
     public Guid[]? RoleIds { get; set; }
 }
-public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
+public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
 {
     private readonly IApplicationDbContext _context;
 
     public UpdateUserCommandHandler(IApplicationDbContext context)
             => _context = context;
-    public async Task<bool> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
        var roles = await _context.Roles.ToListAsync(cancellationToken);
        var foundUser = await _context.Users.FindAsync(new object[] {request.Id},cancellationToken);
@@ -43,9 +43,9 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
         foundUser.Phone = request.Phone;
         foundUser.FullName = request.FullName;
 
-        
 
-        return (await _context.SaveChangesAsync(cancellationToken)) > 0;
+
+        await _context.SaveChangesAsync(cancellationToken);
 
     }
 }
