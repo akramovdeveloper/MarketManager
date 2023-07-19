@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.Common.DTOs.DistributerDTO
+namespace MarketManager.Application.UseCases.Carts.ResponseModels
 {
-    internal class DistributorGetDTO
+    public class CartDto
     {
+
     }
 }

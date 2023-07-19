@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketManager.Application.UseCases.Orders.Commands.CreateOrder
+namespace MarketManager.Application.UseCases.Packages.Queries.GetAllPackages
 {
-    public  class CreateOrderCommmand : 
+    internal class GetAllPackages
     {
-
     }
 }

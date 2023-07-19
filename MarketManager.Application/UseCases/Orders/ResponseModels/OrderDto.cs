@@ -9,12 +9,11 @@ namespace MarketManager.Application.UseCases.Orders.ResponseModels
 {
     public class OrderDto
     {
+        public Guid Id { get; set; }
         public decimal TotalPrice { get; set; }
 
         public Guid ClientId { get; set; }
         public decimal CardPriceSum { get; set; }
         public decimal CashPurchaseSum { get; set; }
-        public ICollection<Card> Cards { get; set; }
-
     }
 }
