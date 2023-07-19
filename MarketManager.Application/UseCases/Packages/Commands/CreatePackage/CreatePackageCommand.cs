@@ -13,7 +13,7 @@ namespace MarketManager.Application.UseCases.Packages.Commands.CreatePackage
         public double IncomingPrice { get; set; }
         public double SalePrice { get; set; }
 
-        public DateTime IncomingDate { get; set; }
+        public DateTime IncomingDatde { get; set; }
     }
     public class CreatePackageCommandHandler : IRequestHandler<CreatePackageCommand, Guid>
     {
