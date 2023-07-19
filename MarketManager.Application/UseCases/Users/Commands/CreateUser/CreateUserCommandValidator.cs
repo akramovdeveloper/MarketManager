@@ -18,13 +18,13 @@ public class CreateUserCommandValidator:AbstractValidator<CreateUserCommand>
 
         RuleFor(user => user.Phone)
             .NotEmpty().WithMessage("Phone is required.")
-            .Matches(@"^\+998\s\d{2}\s\d{3}\s\d{2}\s\d{2}$")
+            .Matches(@"^\+998(33|9[0-9])\d{7}$")
                 .WithMessage("Phone must be in the format of '+998 90 123 45 67'.");
 
         RuleFor(user => user.Password)
            .NotEmpty().WithMessage("Password is required.")
            .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
-           .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$")
+           .Matches(@"^\+998(33|9[0-9])\d{7}$")
                .WithMessage("Password must contain at least one uppercase letter, one lowercase letter, and one digit.");
     }
 }
