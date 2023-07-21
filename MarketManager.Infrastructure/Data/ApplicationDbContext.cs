@@ -25,9 +25,11 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<Package> Packages { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public DbSet<ProductType> ProductTypes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public DbSet<Permission> Permissions => throw new NotImplementedException();
+    public DbSet<Permission> Permissions { get; set; }
 
     public DbSet<Cart> Carts { get; set; }
+
+    public DbSet<UserRefreshToken> RefreshTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

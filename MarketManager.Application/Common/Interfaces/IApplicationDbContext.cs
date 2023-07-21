@@ -16,5 +16,6 @@ public interface IApplicationDbContext
 
     DbSet<Order> Orders { get; }
     DbSet<Cart> Carts { get; }
+    DbSet<UserRefreshToken> RefreshTokens { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
